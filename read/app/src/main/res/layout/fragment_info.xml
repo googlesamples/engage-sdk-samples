@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Google LLC
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+  <ImageView
+      android:id="@+id/imageInfo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginEnd="24dp"
+      android:adjustViewBounds="true"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_launcher_background" />
+  <TextView
+      android:id="@+id/textInfoTitle"
+      style="@style/infoText"
+      android:textStyle="bold"
+      android:layout_marginTop="20dp"
+      android:text="@string/infoTitle"
+      app:layout_constraintStart_toStartOf="@+id/imageInfo"
+      app:layout_constraintTop_toBottomOf="@+id/imageInfo" />
+  <TextView
+      android:id="@+id/textInfoPrice"
+      style="@style/infoText"
+      android:textStyle="bold"
+      android:text="@string/infoPrice"
+      app:layout_constraintStart_toStartOf="@+id/textInfoTitle"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoTitle" />
+  <TextView
+      android:id="@+id/textInfoAuthor"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/infoAuthors"
+      app:layout_constraintStart_toStartOf="@+id/textInfoPrice"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoPrice" />
+  <TextView
+      android:id="@+id/textInfoPublished"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/infoPublished"
+      app:layout_constraintStart_toStartOf="@+id/textInfoAuthor"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoAuthor" />
+  <TextView
+      android:id="@+id/textInfoPageCount"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/infoPageCount"
+      app:layout_constraintStart_toStartOf="@+id/textInfoPublished"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoPublished" />
+  <TextView
+      android:id="@+id/textInfoGenres"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/infoGenres"
+      app:layout_constraintStart_toStartOf="@+id/textInfoPageCount"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoPageCount" />
+  <TextView
+      android:id="@+id/textInfoSeries"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/infoSeries"
+      app:layout_constraintStart_toStartOf="@+id/textInfoGenres"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoGenres" />
+  <TextView
+      android:id="@+id/textInfoDescription"
+      style="@style/infoText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/infoDescription"
+      app:layout_constraintStart_toStartOf="@+id/textInfoSeries"
+      app:layout_constraintTop_toBottomOf="@+id/textInfoSeries" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+
+    <Button
+        android:id="@+id/buttonSelectPage"
+        style="@style/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/infoSelectPage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textPageProgress"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textPageProgress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/infoProgressInProgress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSelectPage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
