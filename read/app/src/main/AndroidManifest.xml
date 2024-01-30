@@ -44,9 +44,9 @@
         android:name=".publish.EngageServiceBroadcastReceiver"
         android:exported="true">
       <intent-filter>
-        <action android:name="com.google.android.play.engage.action.PUBLISH_RECOMMENDATION" />
-        <action android:name="com.google.android.play.engage.action.PUBLISH_FEATURED" />
-        <action android:name="com.google.android.play.engage.action.PUBLISH_CONTINUATION" />
+        <action android:name="com.google.android.engage.action.PUBLISH_RECOMMENDATION" />
+        <action android:name="com.google.android.engage.action.PUBLISH_FEATURED" />
+        <action android:name="com.google.android.engage.action.PUBLISH_CONTINUATION" />
       </intent-filter>
     </receiver>
   </application>
