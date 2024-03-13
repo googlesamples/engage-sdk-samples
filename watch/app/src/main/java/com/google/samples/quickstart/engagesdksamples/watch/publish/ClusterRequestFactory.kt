@@ -16,6 +16,7 @@ package com.google.samples.quickstart.engagesdksamples.watch.publish
 
 import android.content.Context
 import android.net.Uri
+import com.google.android.engage.common.datamodel.AccountProfile
 import com.google.android.engage.common.datamodel.ContinuationCluster
 import com.google.android.engage.common.datamodel.FeaturedCluster
 import com.google.android.engage.common.datamodel.Image
@@ -40,6 +41,7 @@ class ClusterRequestFactory(context: Context) {
 
   private val db = WatchDatabase.getDatabase(context, CoroutineScope(SupervisorJob()))
   private val movieDao = db.movieDao()
+  private val accountProfile = AccountProfile("1", "profile1")
   private val recommendationClusterTitle =
     context.resources.getString(R.string.recommendation_cluster_title)
   private val signInCardAction = context.resources.getString(R.string.sign_in_card_action_text)
@@ -102,6 +104,8 @@ class ClusterRequestFactory(context: Context) {
     for (item in continuationList) {
       continuationCluster.addEntity(ItemToEntityConverter.convertMovie(item))
     }
+    continuationCluster.setUserConsentToSyncAcrossDevices(true)
+    continuationCluster.setAccountProfile(accountProfile)
     return PublishContinuationClusterRequest.Builder()
       .setContinuationCluster(continuationCluster.build())
       .build()

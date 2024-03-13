@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "723fc52863ed3be734f45d780ed3076e",
+    "identityHash": "93c23141d2a9be84cc38fe20f9dc2bf6",
     "entities": [
       {
         "tableName": "movie_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `movie_name` TEXT NOT NULL, `landscape_poster` INTEGER NOT NULL, `playback_uri` TEXT NOT NULL, `release_date` INTEGER NOT NULL, `availability` INTEGER NOT NULL, `offer_price` TEXT NOT NULL, `duration_millis` INTEGER NOT NULL, `genre` TEXT NOT NULL, `content_ratings` TEXT NOT NULL, `currently_watching` INTEGER NOT NULL, `watch_next_type` INTEGER NOT NULL, `last_engagement_time_millis` INTEGER NOT NULL, `last_playback_time_millis` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `movie_name` TEXT NOT NULL, `landscape_poster` INTEGER NOT NULL, `platform_type` INTEGER NOT NULL, `platform_specific_playback_uri` TEXT NOT NULL, `playback_uri` TEXT NOT NULL, `release_date` INTEGER NOT NULL, `availability` INTEGER NOT NULL, `duration_millis` INTEGER NOT NULL, `genre` TEXT NOT NULL, `content_rating_agency` TEXT NOT NULL, `content_rating` TEXT NOT NULL, `currently_watching` INTEGER NOT NULL, `watch_next_type` INTEGER NOT NULL, `last_engagement_time_millis` INTEGER NOT NULL, `startTimestampMillis` INTEGER NOT NULL, `endTimestampMillis` INTEGER NOT NULL, `last_playback_time_millis` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -24,6 +24,18 @@
             "fieldPath": "landscapePoster",
             "columnName": "landscape_poster",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "platformType",
+            "columnName": "platform_type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "platformSpecificPlaybackUri",
+            "columnName": "platform_specific_playback_uri",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -45,12 +57,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "offerPrice",
-            "columnName": "offer_price",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "durationMillis",
             "columnName": "duration_millis",
             "affinity": "INTEGER",
@@ -63,8 +69,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "contentRatings",
-            "columnName": "content_ratings",
+            "fieldPath": "contentRatingAgency",
+            "columnName": "content_rating_agency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contentRating",
+            "columnName": "content_rating",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -83,6 +95,18 @@
           {
             "fieldPath": "lastEngagementTimeMillis",
             "columnName": "last_engagement_time_millis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTimestampMillis",
+            "columnName": "startTimestampMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endTimestampMillis",
+            "columnName": "endTimestampMillis",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -132,7 +156,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '723fc52863ed3be734f45d780ed3076e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '93c23141d2a9be84cc38fe20f9dc2bf6')"
     ]
   }
 }

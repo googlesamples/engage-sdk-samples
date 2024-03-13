@@ -16,6 +16,7 @@ package com.google.samples.quickstart.engagesdksamples.read.publish;
 
 import androidx.annotation.NonNull;
 import com.google.android.engage.books.datamodel.EbookEntity;
+import com.google.android.engage.common.datamodel.AccountProfile;
 import com.google.android.engage.common.datamodel.ContinuationCluster;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
@@ -50,6 +51,9 @@ final class GetContinuationCluster {
         clusterBuilder.addEntity(entity);
       }
     }
+    clusterBuilder.setUserConsentToSyncAcrossDevices(true);
+    clusterBuilder.setAccountProfile(
+            new AccountProfile(Constants.ACCOUNT_ID, Constants.PROFILE_ID));
     return clusterBuilder.build();
   }
 

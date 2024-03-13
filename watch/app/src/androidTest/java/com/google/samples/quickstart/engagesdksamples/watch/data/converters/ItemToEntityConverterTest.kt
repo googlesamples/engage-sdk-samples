@@ -15,6 +15,7 @@
 package com.google.samples.quickstart.engagesdksamples.watch
 
 import android.net.Uri
+import com.google.android.engage.common.datamodel.PlatformType
 import com.google.samples.quickstart.engagesdksamples.watch.data.converters.ItemToEntityConverter
 import com.google.samples.quickstart.engagesdksamples.watch.data.model.MovieItem
 import org.junit.Test
@@ -29,10 +30,10 @@ class ItemToEntityConverterTest {
     assert(movieEntity.name == movieItem.movieName)
     assert(movieEntity.playBackUri == Uri.parse(movieItem.playbackUri))
     assert(movieEntity.releaseDateEpochMillis.get() == movieItem.releaseDate)
-    assert(movieEntity.offerPrice.get() == movieItem.offerPrice)
     assert(movieEntity.durationMillis == movieItem.durationMillis)
     assert(movieEntity.genres[0] == movieItem.genre)
-    assert(movieEntity.contentRatings[0] == movieItem.contentRatings)
+    assert(movieEntity.contentRatings[0].rating == movieItem.contentRating)
+    assert(movieEntity.contentRatings[0].agencyName == movieItem.contentRatingAgency)
   }
 
   @Test
@@ -47,10 +48,10 @@ class ItemToEntityConverterTest {
     assert(inProgressMovieEntity.name == inProgressMovieItem.movieName)
     assert(inProgressMovieEntity.playBackUri == Uri.parse(inProgressMovieItem.playbackUri))
     assert(inProgressMovieEntity.releaseDateEpochMillis.get() == inProgressMovieItem.releaseDate)
-    assert(inProgressMovieEntity.offerPrice.get() == inProgressMovieItem.offerPrice)
     assert(inProgressMovieEntity.durationMillis == inProgressMovieItem.durationMillis)
     assert(inProgressMovieEntity.genres[0] == inProgressMovieItem.genre)
-    assert(inProgressMovieEntity.contentRatings[0] == inProgressMovieItem.contentRatings)
+    assert(inProgressMovieEntity.contentRatings[0].rating == inProgressMovieItem.contentRating)
+    assert(inProgressMovieEntity.contentRatings[0].agencyName == inProgressMovieItem.contentRatingAgency)
     assert(
       inProgressMovieEntity.lastEngagementTimeMillis.get() ==
         inProgressMovieItem.lastEngagementTimeMillis
@@ -69,12 +70,14 @@ class ItemToEntityConverterTest {
         movieName = "Title1",
         landscapePoster = R.drawable.blue,
         playbackUri = "https://tv.com/playback/1",
+        platformSpecificPlaybackUri = "https://tv.com/playback/1",
+        platformType =  PlatformType.TYPE_ANDROID_TV,
         releaseDate = 1633032875L,
         availability = 1,
-        offerPrice = "0.99",
         durationMillis = 123456789L,
         genre = "mystery",
-        contentRatings = "PG-13"
+        contentRating = "PG-13",
+        contentRatingAgency = "ContentRatingAgency"
       )
 
     private var inProgressMovieItem =
@@ -83,12 +86,14 @@ class ItemToEntityConverterTest {
         movieName = "Title2",
         landscapePoster = R.drawable.blue,
         playbackUri = "https://tv.com/playback/1",
+        platformSpecificPlaybackUri = "https://tv.com/playback/1",
+        platformType =  PlatformType.TYPE_ANDROID_TV,
         releaseDate = 2744143986L,
         availability = 2,
-        offerPrice = "1.99",
         durationMillis = 234567891L,
         genre = "comedy",
-        contentRatings = "R"
+        contentRating = "R",
+        contentRatingAgency = "ContentRatingAgency"
       )
   }
 }

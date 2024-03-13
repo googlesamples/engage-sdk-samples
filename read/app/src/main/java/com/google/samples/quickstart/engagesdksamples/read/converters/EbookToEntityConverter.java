@@ -44,6 +44,7 @@ public final class EbookToEntityConverter {
     Ebook ebook = new Ebook(ebookId);
     EbookEntity.Builder entityBuilder = new EbookEntity.Builder();
     entityBuilder
+        .setEntityId(Integer.toString(ebook.getId()))
         .setName(ebook.getName())
         .addAuthors(ebook.getAuthors())
         .setActionLinkUri(Uri.parse(ENGAGE_SDK_DOCS_URL))

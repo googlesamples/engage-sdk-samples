@@ -14,6 +14,7 @@
  */
 package com.google.samples.quickstart.engagesdksamples.watch.data.model
 
+import com.google.android.engage.common.datamodel.PlatformType
 import com.google.samples.quickstart.engagesdksamples.watch.R
 
 class TestData() {
@@ -26,13 +27,15 @@ class TestData() {
           id = "$i",
           movieName = "Title $i",
           landscapePoster = R.drawable.red,
+          platformType = PlatformType.TYPE_ANDROID_TV,
+          platformSpecificPlaybackUri = "https://tv.com/playback/${i}",
           playbackUri = "https://tv.com/playback/${i}",
           releaseDate = 1633032875L,
           availability = 1,
-          offerPrice = "0.00",
           durationMillis = 123456789L,
           genre = "mystery",
-          contentRatings = "PG-13"
+          contentRatingAgency = "ContentRatingAgency",
+          contentRating = "PG-13"
         )
       )
     }
