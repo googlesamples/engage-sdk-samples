@@ -27,7 +27,7 @@ class TestData() {
           id = "$i",
           movieName = "Title $i",
           landscapePoster = R.drawable.red,
-          platformType = PlatformType.TYPE_ANDROID_TV,
+          platformType = PlatformType.TYPE_UNSPECIFIED,
           platformSpecificPlaybackUri = "https://tv.com/playback/${i}",
           playbackUri = "https://tv.com/playback/${i}",
           releaseDate = 1633032875L,

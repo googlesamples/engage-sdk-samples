@@ -19,7 +19,6 @@ import com.google.android.engage.common.datamodel.DisplayTimeWindow
 import com.google.android.engage.common.datamodel.Image
 import com.google.android.engage.common.datamodel.ImageTheme
 import com.google.android.engage.common.datamodel.PlatformSpecificUri
-import com.google.android.engage.common.datamodel.Rating
 import com.google.android.engage.video.datamodel.MovieEntity
 import com.google.android.engage.video.datamodel.RatingSystem
 import com.google.samples.quickstart.engagesdksamples.watch.data.model.MovieItem
@@ -47,7 +46,7 @@ object ItemToEntityConverter {
             )
             .setImageWidthInPixel(408)
             .setImageHeightInPixel(960)
-            .setImageTheme(ImageTheme.IMAGE_THEME_DARK)
+            .setImageTheme(ImageTheme.IMAGE_THEME_UNSPECIFIED)
             .build()
         )
         .setPlayBackUri(Uri.parse(movie.playbackUri))

@@ -41,7 +41,7 @@ class ClusterRequestFactory(context: Context) {
 
   private val db = WatchDatabase.getDatabase(context, CoroutineScope(SupervisorJob()))
   private val movieDao = db.movieDao()
-  private val accountProfile = AccountProfile("1", "profile1")
+  private val accountProfile = AccountProfile("account_id", "profile_id")
   private val recommendationClusterTitle =
     context.resources.getString(R.string.recommendation_cluster_title)
   private val signInCardAction = context.resources.getString(R.string.sign_in_card_action_text)

@@ -20,6 +20,7 @@ import static com.google.samples.quickstart.engagesdksamples.read.converters.Con
 
 import android.net.Uri;
 import com.google.android.engage.common.datamodel.Image;
+import com.google.android.engage.common.datamodel.ImageTheme;
 
 /** Converts a ResourceId to an Engage Image. */
 public class ResourceIdToImage {
@@ -29,7 +30,7 @@ public class ResourceIdToImage {
         .setImageUri(getImageUriFromResourceId(imageResourceId))
         .setImageHeightInPixel(IMAGE_HEIGHT)
         .setImageWidthInPixel(IMAGE_WIDTH)
-        .setImageTheme(0)
+        .setImageTheme(ImageTheme.IMAGE_THEME_UNSPECIFIED)
         .build();
   }
 
