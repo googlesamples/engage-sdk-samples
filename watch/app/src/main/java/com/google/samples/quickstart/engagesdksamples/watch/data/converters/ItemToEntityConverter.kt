@@ -46,12 +46,15 @@ object ItemToEntityConverter {
             )
             .setImageWidthInPixel(408)
             .setImageHeightInPixel(960)
-            .setImageTheme(ImageTheme.IMAGE_THEME_UNSPECIFIED)
+            .setImageTheme(ImageTheme.IMAGE_THEME_LIGHT)
             .build()
         )
         .setPlayBackUri(Uri.parse(movie.playbackUri))
         .addPlatformSpecificPlaybackUri(
-          PlatformSpecificUri(Uri.parse(movie.platformSpecificPlaybackUri), movie.platformType)
+          PlatformSpecificUri.Builder()
+            .setActionUri(Uri.parse(movie.platformSpecificPlaybackUri))
+            .setPlatformType(movie.platformType)
+            .build()
         )
         .setReleaseDateEpochMillis(movie.releaseDate)
         .setAvailability(movie.availability)
@@ -59,8 +62,8 @@ object ItemToEntityConverter {
         .addGenre(movie.genre)
         .addAvailabilityTimeWindow(
           DisplayTimeWindow.Builder()
-            .setStartTimestampMillis(movie.startTimestampMillis)
-            .setEndTimestampMillis(movie.endTimestampMillis)
+            .setStartTimestampMillis(movie.availabilityStartTimeMillis)
+            .setEndTimestampMillis(movie.availabilityEndTimeMillis)
             .build()
         )
         .addContentRating(

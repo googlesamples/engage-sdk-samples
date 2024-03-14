@@ -30,7 +30,7 @@ public class ResourceIdToImage {
         .setImageUri(getImageUriFromResourceId(imageResourceId))
         .setImageHeightInPixel(IMAGE_HEIGHT)
         .setImageWidthInPixel(IMAGE_WIDTH)
-        .setImageTheme(ImageTheme.IMAGE_THEME_UNSPECIFIED)
+        .setImageTheme(ImageTheme.IMAGE_THEME_LIGHT)
         .build();
   }
 

@@ -53,7 +53,11 @@ final class GetContinuationCluster {
     }
     clusterBuilder.setUserConsentToSyncAcrossDevices(true);
     clusterBuilder.setAccountProfile(
-            new AccountProfile(Constants.ACCOUNT_ID, Constants.PROFILE_ID));
+            new AccountProfile.Builder()
+                    .setAccountId(Constants.ACCOUNT_ID)
+                    .setProfileId(Constants.PROFILE_ID)
+                    .build()
+            );
     return clusterBuilder.build();
   }
 

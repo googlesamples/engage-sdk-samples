@@ -40,6 +40,8 @@ data class MovieItem(
   var lastEngagementTimeMillis: Long = 0L // Epoch ms
   var startTimestampMillis: Long = 0L
   var endTimestampMillis: Long = 0L
+  var availabilityStartTimeMillis: Long = 0L
+  var availabilityEndTimeMillis: Long = 0L
   @ColumnInfo(name = LAST_PLAYBACK_TIME_MILLIS) var lastPlaybackTimeMillis: Long = 0L // Epoch ms
 
   companion object {
