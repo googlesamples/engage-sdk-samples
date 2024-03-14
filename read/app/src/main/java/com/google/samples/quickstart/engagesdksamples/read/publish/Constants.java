@@ -44,6 +44,8 @@ class Constants {
   static final String SET_CONTINUATION = "SET_CONTINUATION";
 
   static final String SET_USER_MANAGEMENT = "SET_USER_MANAGEMENT";
+  static final String ACCOUNT_ID = "ACCOUNT_ID";
+  static final String PROFILE_ID = "PROFILE_ID";
 
   private Constants() {}
 }

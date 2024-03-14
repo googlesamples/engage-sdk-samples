@@ -15,8 +15,12 @@
 package com.google.samples.quickstart.engagesdksamples.watch.data.converters
 
 import android.net.Uri
+import com.google.android.engage.common.datamodel.DisplayTimeWindow
 import com.google.android.engage.common.datamodel.Image
+import com.google.android.engage.common.datamodel.ImageTheme
+import com.google.android.engage.common.datamodel.PlatformSpecificUri
 import com.google.android.engage.video.datamodel.MovieEntity
+import com.google.android.engage.video.datamodel.RatingSystem
 import com.google.samples.quickstart.engagesdksamples.watch.data.model.MovieItem
 
 const val PACKAGE_NAME: String = "com.google.samples.quickstart.engagesdksamples.watch"
@@ -34,6 +38,7 @@ object ItemToEntityConverter {
     val movieBuilder: MovieEntity.Builder =
       MovieEntity.Builder()
         .setName(movie.movieName)
+        .setEntityId(movie.id)
         .addPosterImage(
           Image.Builder()
             .setImageUri(
@@ -41,15 +46,32 @@ object ItemToEntityConverter {
             )
             .setImageWidthInPixel(408)
             .setImageHeightInPixel(960)
+            .setImageTheme(ImageTheme.IMAGE_THEME_LIGHT)
             .build()
         )
         .setPlayBackUri(Uri.parse(movie.playbackUri))
+        .addPlatformSpecificPlaybackUri(
+          PlatformSpecificUri.Builder()
+            .setActionUri(Uri.parse(movie.platformSpecificPlaybackUri))
+            .setPlatformType(movie.platformType)
+            .build()
+        )
         .setReleaseDateEpochMillis(movie.releaseDate)
         .setAvailability(movie.availability)
-        .setOfferPrice(movie.offerPrice)
         .setDurationMillis(movie.durationMillis)
         .addGenre(movie.genre)
-        .addContentRating(movie.contentRatings)
+        .addAvailabilityTimeWindow(
+          DisplayTimeWindow.Builder()
+            .setStartTimestampMillis(movie.availabilityStartTimeMillis)
+            .setEndTimestampMillis(movie.availabilityEndTimeMillis)
+            .build()
+        )
+        .addContentRating(
+          RatingSystem.Builder()
+            .setAgencyName(movie.contentRatingAgency)
+            .setRating(movie.contentRating)
+            .build()
+        )
     if (movie.currentlyWatching) {
       movieBuilder
         .setWatchNextType(movie.watchNextType)
