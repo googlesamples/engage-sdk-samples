@@ -24,18 +24,24 @@ data class MovieItem(
   @PrimaryKey @ColumnInfo(name = ID) val id: String,
   @ColumnInfo(name = MOVIE_NAME) val movieName: String,
   @ColumnInfo(name = LANDSCAPE_POSTER) var landscapePoster: Int, // Resource ID
+  @ColumnInfo(name = PLATFORM_TYPE) val platformType: Int,
+  @ColumnInfo(name = PLATFORM_SPECIFIC_PLAYBACK_URI) val platformSpecificPlaybackUri: String,
   @ColumnInfo(name = PLAYBACK_URI) val playbackUri: String,
   @ColumnInfo(name = RELEASE_DATE) val releaseDate: Long,
   @ColumnInfo(name = AVAILABILITY) val availability: Int, // ContentAvailability.AVAILABILITY_TYPE
-  @ColumnInfo(name = OFFER_PRICE) var offerPrice: String,
   @ColumnInfo(name = DURATION_MILLIS) val durationMillis: Long, // Epoch ms
   @ColumnInfo(name = GENRE) val genre: String,
-  @ColumnInfo(name = CONTENT_RATINGS) val contentRatings: String
+  @ColumnInfo(name = CONTENT_RATING_AGENCY) val contentRatingAgency: String,
+  @ColumnInfo(name = CONTENT_RATING) val contentRating: String
 ) {
   @ColumnInfo(name = CURRENTLY_WATCHING) var currentlyWatching: Boolean = false
   @ColumnInfo(name = WATCH_NEXT_TYPE) var watchNextType: Int = WatchNextType.TYPE_UNKNOWN
   @ColumnInfo(name = LAST_ENGAGEMENT_TIME_MILLIS)
   var lastEngagementTimeMillis: Long = 0L // Epoch ms
+  var startTimestampMillis: Long = 0L
+  var endTimestampMillis: Long = 0L
+  var availabilityStartTimeMillis: Long = 0L
+  var availabilityEndTimeMillis: Long = 0L
   @ColumnInfo(name = LAST_PLAYBACK_TIME_MILLIS) var lastPlaybackTimeMillis: Long = 0L // Epoch ms
 
   companion object {
@@ -43,13 +49,15 @@ data class MovieItem(
     const val ID = "id"
     const val MOVIE_NAME = "movie_name"
     const val LANDSCAPE_POSTER = "landscape_poster"
+    const val PLATFORM_TYPE = "platform_type"
+    const val PLATFORM_SPECIFIC_PLAYBACK_URI = "platform_specific_playback_uri"
     const val PLAYBACK_URI = "playback_uri"
     const val RELEASE_DATE = "release_date"
     const val AVAILABILITY = "availability"
-    const val OFFER_PRICE = "offer_price"
     const val DURATION_MILLIS = "duration_millis"
     const val GENRE = "genre"
-    const val CONTENT_RATINGS = "content_ratings"
+    const val CONTENT_RATING_AGENCY = "content_rating_agency"
+    const val CONTENT_RATING = "content_rating"
     const val CURRENTLY_WATCHING = "currently_watching"
     const val WATCH_NEXT_TYPE = "watch_next_type"
     const val LAST_ENGAGEMENT_TIME_MILLIS = "last_engagement_time_millis"

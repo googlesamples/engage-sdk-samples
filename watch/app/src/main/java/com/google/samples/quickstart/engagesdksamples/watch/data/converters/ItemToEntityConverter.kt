@@ -30,10 +30,11 @@ object ItemToEntityConverter {
    * @param movie - [MovieItem] instance that will be converted to a [MovieEntity]
    * @return Returns a [MovieEntity] instance from a given [MovieItem]
    */
-  fun convertMovie(movie: MovieItem): MovieEntity {
+   fun convertMovie(movie: MovieItem): MovieEntity {
     val movieBuilder: MovieEntity.Builder =
       MovieEntity.Builder()
         .setName(movie.movieName)
+        .setEntityId(movie.id)
         .addPosterImage(
           Image.Builder()
             .setImageUri(
@@ -41,15 +42,32 @@ object ItemToEntityConverter {
             )
             .setImageWidthInPixel(408)
             .setImageHeightInPixel(960)
+            .setImageTheme(ImageTheme.IMAGE_THEME_LIGHT)
             .build()
         )
         .setPlayBackUri(Uri.parse(movie.playbackUri))
+        .addPlatformSpecificPlaybackUri(
+          PlatformSpecificUri.Builder()
+            .setActionUri(Uri.parse(movie.platformSpecificPlaybackUri))
+            .setPlatformType(movie.platformType)
+            .build()
+        )
         .setReleaseDateEpochMillis(movie.releaseDate)
         .setAvailability(movie.availability)
-        .setOfferPrice(movie.offerPrice)
         .setDurationMillis(movie.durationMillis)
         .addGenre(movie.genre)
-        .addContentRating(movie.contentRatings)
+        .addAvailabilityTimeWindow(
+          DisplayTimeWindow.Builder()
+            .setStartTimestampMillis(movie.availabilityStartTimeMillis)
+            .setEndTimestampMillis(movie.availabilityEndTimeMillis)
+            .build()
+        )
+        .addContentRating(
+          RatingSystem.Builder()
+            .setAgencyName(movie.contentRatingAgency)
+            .setRating(movie.contentRating)
+            .build()
+        )
     if (movie.currentlyWatching) {
       movieBuilder
         .setWatchNextType(movie.watchNextType)

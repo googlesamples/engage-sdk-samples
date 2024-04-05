@@ -51,7 +51,7 @@ android {
 dependencies {
 
     // Engage SDK
-    implementation 'com.google.android.engage:engage-core:1.2.0'
+    implementation 'com.google.android.engage:engage-core:1.4.0'
 
     // Oss Plugin
     implementation "com.google.android.gms:play-services-oss-licenses:17.0.0"

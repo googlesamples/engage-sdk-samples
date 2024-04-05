@@ -22,6 +22,7 @@ import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import androidx.work.testing.TestListenableWorkerBuilder
 import androidx.work.workDataOf
+import com.google.android.engage.common.datamodel.PlatformType
 import com.google.android.engage.service.AppEngageErrorCode
 import com.google.android.engage.service.AppEngageException
 import com.google.android.engage.service.AppEngagePublishClient
@@ -64,12 +65,14 @@ class EngageServiceWorkerTest {
           movieName = "Test",
           landscapePoster = 1,
           playbackUri = "Test",
+          platformSpecificPlaybackUri = "Test",
+          platformType =  PlatformType.TYPE_ANDROID_TV,
           releaseDate = 1L,
           availability = 1,
-          offerPrice = "String",
           durationMillis = 1L,
           genre = "Test",
-          contentRatings = "Test"
+          contentRatingAgency = "ContentRatingAgency",
+          contentRating = "Test"
         )
         .apply {
           currentlyWatching = true
