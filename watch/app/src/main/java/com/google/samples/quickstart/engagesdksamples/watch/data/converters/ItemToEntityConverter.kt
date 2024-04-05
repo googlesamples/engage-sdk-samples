@@ -15,8 +15,12 @@
 package com.google.samples.quickstart.engagesdksamples.watch.data.converters
 
 import android.net.Uri
+import com.google.android.engage.common.datamodel.DisplayTimeWindow
 import com.google.android.engage.common.datamodel.Image
+import com.google.android.engage.common.datamodel.ImageTheme
+import com.google.android.engage.common.datamodel.PlatformSpecificUri
 import com.google.android.engage.video.datamodel.MovieEntity
+import com.google.android.engage.video.datamodel.RatingSystem
 import com.google.samples.quickstart.engagesdksamples.watch.data.model.MovieItem
 
 const val PACKAGE_NAME: String = "com.google.samples.quickstart.engagesdksamples.watch"

@@ -16,6 +16,7 @@ package com.google.samples.quickstart.engagesdksamples.watch.publish
 
 import android.content.Context
 import android.net.Uri
+import com.google.android.engage.common.datamodel.AccountProfile
 import com.google.android.engage.common.datamodel.ContinuationCluster
 import com.google.android.engage.common.datamodel.FeaturedCluster
 import com.google.android.engage.common.datamodel.Image
@@ -31,7 +32,6 @@ import com.google.samples.quickstart.engagesdksamples.watch.data.converters.PACK
 import com.google.samples.quickstart.engagesdksamples.watch.data.room.WatchDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-
 /**
  * Class in charge of constructing the publishing requests and sending them to their respective
  * publishers
@@ -40,6 +40,10 @@ class ClusterRequestFactory(context: Context) {
 
   private val db = WatchDatabase.getDatabase(context, CoroutineScope(SupervisorJob()))
   private val movieDao = db.movieDao()
+  private val accountProfile = AccountProfile.Builder()
+    .setAccountId("account_id")
+    .setProfileId("profile_id")
+    .build()
   private val recommendationClusterTitle =
     context.resources.getString(R.string.recommendation_cluster_title)
   private val signInCardAction = context.resources.getString(R.string.sign_in_card_action_text)
@@ -55,7 +59,6 @@ class ClusterRequestFactory(context: Context) {
       .setActionText(signInCardAction)
       .setActionUri(Uri.parse("https://xyz.com/signin"))
       .build()
-
   /**
    * [constructFeaturedClusterRequest] returns a [PublishFeaturedClusterRequest] to be used by the
    * [EngageServiceWorker] to publish Featured clusters
@@ -72,7 +75,6 @@ class ClusterRequestFactory(context: Context) {
       .setFeaturedCluster(featuredCluster.build())
       .build()
   }
-
   /**
    * [constructRecommendationClustersRequest] returns a [PublishRecommendationClustersRequest] to be
    * used by the [EngageServiceWorker] to publish Recommendations clusters
@@ -89,7 +91,6 @@ class ClusterRequestFactory(context: Context) {
       .addRecommendationCluster(recommendationCluster.setTitle(recommendationClusterTitle).build())
       .build()
   }
-
   /**
    * [constructContinuationClusterRequest] returns a [PublishContinuationClusterRequest] to be used
    * by the [EngageServiceWorker] to publish Continuations clusters
@@ -102,11 +103,12 @@ class ClusterRequestFactory(context: Context) {
     for (item in continuationList) {
       continuationCluster.addEntity(ItemToEntityConverter.convertMovie(item))
     }
+    continuationCluster.setUserConsentToSyncAcrossDevices(true)
+    continuationCluster.setAccountProfile(accountProfile)
     return PublishContinuationClusterRequest.Builder()
       .setContinuationCluster(continuationCluster.build())
       .build()
   }
-
   /**
    * [constructUserAccountManagementClusterRequest] returns a [PublishUserAccountManagementRequest]
    * to be used by the [EngageServiceWorker] to publish User Account Management clusters
